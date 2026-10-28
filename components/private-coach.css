@@ -1,0 +1,16 @@
+.private-coach .private-coach__intro { color: var(--muted, #848b79); font-size: 12px; line-height: 2; margin: 0 0 19px; }
+.private-coach .private-coach__result { padding: 25px 20px; text-align: center; border: 1px solid #c6d3ba65; border-radius: 14px; background: linear-gradient(145deg, #d7e5ca1f, #c9d9b714); min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.private-coach .private-coach__emblem { width: 48px; height: 48px; border-radius: 14px; background: #78966514; color: #829e69; display: grid; place-items: center; margin-bottom: 14px; }
+.private-coach .private-coach__label { font-size: 10px; color: var(--muted, #859176); margin-bottom: 9px; }
+.private-coach .private-coach__result h3 { font-size: 16px; line-height: 1.8; color: var(--ink, #314b36); margin: 0 0 6px; }
+.private-coach .private-coach__result .private-coach__move { font-size: clamp(19px, 5vw, 27px); font-weight: 700; color: var(--green, #3c6044); overflow-wrap: anywhere; letter-spacing: .5px; }
+.private-coach .private-coach__result p { font-size: 11px; line-height: 2; color: var(--muted, #8f9c83); margin: 0; }
+.private-coach .private-coach__metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 16px 0 0; }
+.private-coach .private-coach__metrics > div { border: 1px solid var(--line, #dce3d4); border-radius: 9px; padding: 11px 5px; display: flex; align-items: center; flex-direction: column; gap: 6px; text-align: center; min-width: 0; }
+.private-coach .private-coach__metrics svg { color: #8c9e7d; }
+.private-coach .private-coach__metrics span { font-size: 8px; color: var(--muted, #919e84); line-height: 1.9; }
+.private-coach .private-coach__metrics strong { font-size: 15px; color: var(--ink, #3d573f); font-weight: 600; overflow-wrap: anywhere; }
+.private-coach .private-coach__actions { display: grid; gap: 9px; margin-top: 20px; }
+.private-coach .private-coach__actions > button { width: 100%; }
+.private-coach .private-coach__note { text-align: center; font-size: 9px; color: var(--muted, #9aa68f); line-height: 2; margin: 14px 0 0; }
+@media (prefers-reduced-motion: reduce) { .private-coach .private-coach__result { transition: none; } }

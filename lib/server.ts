@@ -20,8 +20,25 @@ function member(room: Room, tokenHash: string): Member {
   if (!player) throw new AppError("سەرەتا بچۆ ناو ڕوومەکە.", 403);
   return player;
 }
+/** Previously stored rooms remain usable after deploying the room details update. */
+function roomDefaults(room: Room) {
+  room.messages ??= [];
+  room.results ??= [];
+}
+/** Capture the winner's stable identity before a rematch swaps player colors. */
+function recordResult(room: Room) {
+  if (!room.game.winner || room.results.some(result => result.gameId === room.game.id)) return;
+  room.results.push({
+    gameId: room.game.id,
+    winnerId: room.game.winner === "draw" ? null : room.members.find(m => m.role === room.game.winner)?.id ?? null,
+    reason: room.game.reason,
+    finishedAt: Date.now(),
+  });
+  room.results = room.results.slice(-20);
+}
 export function publicRoom(room: Room, tokenHash: string): PublicRoom {
   const me = member(room, tokenHash);
+  roomDefaults(room);
   const { positions: _positions, ...game } = room.game;
   return { ...room, game, members: room.members.map(({ tokenHash: _secret, ...m }) => m), me: me.id };
 }
@@ -67,6 +84,7 @@ export async function createRoom(body: Record<string, unknown>, tokenHash: strin
       code, createdAt: now, updatedAt: now, revision: 0,
       members: [{ id: randomUUID(), name, role: "white", tokenHash, lastSeen: now }],
       game: newGame(randomUUID()), started: false, drawOffer: null, rematchVotes: [],
+      messages: [], results: [],
     };
     if (await insertRoom(room)) return publicRoom(room, tokenHash);
   }
@@ -76,6 +94,8 @@ export async function joinRoom(code: string, body: Record<string, unknown>, toke
   const name = playerName(body);
   if (body.role !== "player" && body.role !== "spectator") throw new AppError("جۆری چوونەژوورەوە دیاری بکە.");
   const room = await updateRoom(code, room => {
+    roomDefaults(room);
+    recordResult(room);
     const existing = room.members.find(m => m.tokenHash === tokenHash);
     if (existing) { existing.lastSeen = Date.now(); return; }
     if (room.members.length >= 4) throw new AppError("ڕوومەکە پڕە؛ زۆرترین ٤ کەس.", 409);
@@ -97,16 +117,27 @@ export async function actInRoom(code: string, body: Record<string, unknown>, tok
   const action = body as unknown as RoomAction;
   const room = await updateRoom(code, room => {
     const me = member(room, tokenHash);
+    roomDefaults(room);
+    recordResult(room);
     if (action.type === "leave") {
       if (me.role === "spectator") room.members = room.members.filter(m => m.id !== me.id);
       else {
         if (room.started && !room.game.winner) { room.game.winner = opposite(me.role); room.game.reason = "resign"; }
         me.lastSeen = 0;
       }
+      recordResult(room);
       return;
     }
     me.lastSeen = Date.now();
     if (action.type === "heartbeat") return;
+    if (action.type === "message") {
+      if (typeof action.text !== "string" || action.text.length > 240) throw new AppError("پەیامەکەت دەبێت لە ١ بۆ ٢٤٠ پیت بێت.");
+      const text = action.text.replace(/[\u0000-\u001f\u007f-\u009f\u200e\u200f\u202a-\u202e\u2066-\u2069]/g, "").trim();
+      if (!text) throw new AppError("سەرەتا پەیامێک بنووسە.");
+      room.messages.push({ id: randomUUID(), memberId: me.id, name: me.name, text, createdAt: Date.now() });
+      room.messages = room.messages.slice(-40);
+      return;
+    }
     if (me.role === "spectator") throw new AppError("تماشاکەر ناتوانێت جووڵە بکات.", 403);
     if (action.gameId !== room.game.id) throw new AppError("یارییەکی نوێ دەستی پێکردووە. دووبارە هەوڵ بدەوە.", 409);
     if (action.type === "rematch") {
@@ -132,6 +163,7 @@ export async function actInRoom(code: string, body: Record<string, unknown>, tok
       else room.drawOffer = room.drawOffer === me.role ? null : me.role;
     } else if (action.type === "decline-draw") { room.drawOffer = null; }
     else throw new AppError("ئەم کردارە نەناسراوە.");
+    recordResult(room);
   });
   if (action.type === "leave") return { left: true };
   return publicRoom(room, tokenHash);

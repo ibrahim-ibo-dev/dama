@@ -1,0 +1,93 @@
+.entry-card-with-bot .entry-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+}
+.entry-card-with-bot .entry-tabs button {
+  justify-content: center;
+  gap: 5px;
+  font-size: 10px;
+  padding-left: 2px;
+  padding-right: 2px;
+  white-space: nowrap;
+}
+.entry-card-with-bot .entry-tabs button .tab-dot { width: 11px; height: 11px; }
+.solo-entry { margin-top: 13px; }
+.solo-matchup {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 25px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: var(--input);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+}
+.solo-matchup>div { display: flex; gap: 8px; align-items: center; min-width: 0; }
+.solo-matchup>div:last-child { justify-content: flex-end; }
+.solo-avatar { display: grid; place-items: center; width: 34px; height: 34px; flex-shrink: 0; border-radius: 10px; }
+.solo-human { background: #efe0c2; border: 1px solid #d2ba8f; color: #947140; }
+.solo-bot { background: #304e3a; border: 1px solid #25412e; color: #c7d9b4; }
+.solo-matchup strong { display: block; font-size: 10px; font-weight: 600; white-space: nowrap; }
+.solo-matchup small { display: flex; gap: 4px; align-items: center; font-size: 7px; margin-top: 4px; color: var(--subtle); white-space: nowrap; }
+.solo-matchup .mini-disc { width: 9px; height: 9px; box-shadow: none; }
+.solo-versus { text-align: center; color: var(--subtle); font-size: 8px; font-weight: 700; letter-spacing: 1px; }
+.solo-level-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 17px 0 8px; }
+.solo-level-heading>span { font-size: 11px; font-weight: 500; }
+.solo-level-heading small { color: var(--subtle); font-size: 7px; }
+.solo-levels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.solo-level { display: flex; flex-direction: column; align-items: center; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 12px 5px 10px; color: var(--muted); position: relative; min-width: 0; transition: border-color .18s, background .18s, transform .18s; }
+.solo-level:hover { border-color: var(--green); transform: translateY(-1px); }
+.solo-level.selected { border-color: var(--green); background: var(--green-soft); color: var(--green); }
+.solo-level strong { display: block; font-size: 11px; font-weight: 600; margin-top: 9px; line-height: 1.8; }
+.solo-level>small { font-size: 8px; color: var(--subtle); margin-top: 3px; line-height: 1.8; }
+.solo-level-bars { display: flex; align-items: flex-end; gap: 3px; height: 18px; direction: ltr; }
+.solo-level-bars i { display: block; width: 5px; border-radius: 2px; background: var(--line); height: 8px; }
+.solo-level-bars i:nth-child(2) { height: 13px; }
+.solo-level-bars i:nth-child(3) { height: 18px; }
+.solo-level-bars .filled { background: var(--muted); }
+.solo-level.selected .solo-level-bars .filled { background: var(--green); }
+.solo-level-check { position: absolute; top: 5px; left: 5px; }
+.solo-first-move { display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--muted); font-size: 8px; margin: 12px 0 0; line-height: 1.9; }
+.solo-first-move .status-dot { height: 4px; width: 4px; }
+.solo-entry-card .start-button { font-size: 11px; }
+@media(max-width:920px) {
+  .entry-card-with-bot .entry-tabs button { font-size: 9px; gap: 4px; }
+  .entry-card-with-bot .entry-tabs button svg { width: 13px; }
+  .solo-matchup { padding: 10px 8px; gap: 4px; }
+  .solo-matchup>div { gap: 6px; }
+  .solo-avatar { width: 29px; height: 29px; border-radius: 8px; }
+  .solo-matchup small { font-size: 6px; }
+  .solo-level-heading small { font-size: 6.5px; }
+  .solo-levels { gap: 6px; }
+  .solo-level>small { font-size: 7px; }
+}
+@media(max-width:760px) {
+  .entry-card-with-bot .entry-tabs button { font-size: 10px; }
+  .solo-matchup { padding: 12px 10px; }
+  .solo-avatar { width: 32px; height: 32px; }
+  .solo-matchup strong { font-size: 11px; }
+  .solo-matchup small { font-size: 7px; }
+  .solo-level-heading small { font-size: 7px; }
+  .solo-level { padding-top: 13px; padding-bottom: 11px; }
+  .solo-level strong { font-size: 12px; }
+  .solo-level>small { font-size: 8px; }
+  .solo-first-move { font-size: 9px; }
+}
+@media(max-width:400px) {
+  .entry-card-with-bot .entry-tabs button { font-size: 9px; gap: 4px; }
+  .entry-card-with-bot .entry-tabs button svg { width: 13px; }
+  .solo-matchup { padding: 10px 8px; }
+  .solo-matchup>div { gap: 6px; }
+  .solo-avatar { width: 28px; height: 28px; }
+  .solo-matchup strong { font-size: 10px; }
+  .solo-matchup small { font-size: 6px; }
+  .solo-level-heading small { font-size: 6.5px; }
+  .solo-level strong { font-size: 11px; }
+  .solo-level>small { font-size: 7px; }
+  .solo-first-move { font-size: 8px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .solo-level { transition: none; }
+  .solo-level:hover { transform: none; }
+}

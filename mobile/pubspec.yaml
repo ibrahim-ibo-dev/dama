@@ -1,0 +1,33 @@
+name: dama_mobile
+description: Kurdish Turkish dama for Android and iOS, sharing rooms with the web game.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.8.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  http: ^1.6.0
+  shared_preferences: ^2.5.3
+  flutter_secure_storage: ^9.2.4
+  share_plus: ^12.0.1
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: NotoSansArabic
+      fonts:
+        - asset: assets/fonts/NotoSansArabic.ttf
+    - family: Manrope
+      fonts:
+        - asset: assets/fonts/Manrope.ttf

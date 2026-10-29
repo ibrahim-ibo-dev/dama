@@ -735,155 +735,157 @@ class _LobbyScreenState extends State<LobbyScreen> {
   );
 
   Widget _preview() => LayoutBuilder(
-    builder: (context, constraints) => ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 480),
-      child: CustomPaint(
-        painter: _ScenePainter(line),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 20, 16, 14),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: Text(
-                      'THE TABLE IS YOURS',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontFamily: 'Manrope',
-                        fontSize: 8,
-                        letterSpacing: 2.5,
-                        color: muted,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    '✳',
-                    style: TextStyle(
-                      fontFamily: 'serif',
-                      fontSize: 26,
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Transform.rotate(
-                angle: -math.pi / 60,
-                child: Column(
+    builder: (context, constraints) => Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 480),
+        child: CustomPaint(
+          painter: _ScenePainter(line),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 20, 16, 14),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Align(
-                      alignment: AlignmentDirectional.centerStart,
-                      child: FractionallySizedBox(
-                        widthFactor: .84,
-                        child: _previewPlayer(false),
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    ExcludeSemantics(
-                      child: IgnorePointer(
-                        child: DamaBoard(
-                          game: newGame('decorative'),
-                          canPlay: false,
-                          onMove: (_) {},
-                          boardStyle: widget.preferences.boardStyle,
-                          showCoordinates: true,
-                          showLegalMoves: false,
-                          reduceMotion: true,
+                    Flexible(
+                      child: Text(
+                        'THE TABLE IS YOURS',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontFamily: 'Manrope',
+                          fontSize: 8,
+                          letterSpacing: 2.5,
+                          color: muted,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    Align(
-                      alignment: AlignmentDirectional.centerEnd,
-                      child: FractionallySizedBox(
-                        widthFactor: .84,
-                        child: _previewPlayer(true),
+                    Text(
+                      '✳',
+                      style: TextStyle(
+                        fontFamily: 'serif',
+                        fontSize: 26,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 23),
-              Transform.rotate(
-                angle: .045,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 11,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.secondary.withValues(alpha: .13),
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: Theme.of(
-                        context,
-                      ).colorScheme.secondary.withValues(alpha: .17),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
+                const SizedBox(height: 20),
+                Transform.rotate(
+                  angle: -math.pi / 60,
+                  child: Column(
                     children: [
-                      Icon(
-                        Icons.local_cafe_outlined,
-                        size: 19,
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
-                      const SizedBox(width: 9),
-                      Text(
-                        'بێ پەلە،\nبە چێژەوە.',
-                        style: TextStyle(
-                          fontSize: 9,
-                          color: Theme.of(context).colorScheme.secondary,
-                          height: 1.8,
+                      Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: FractionallySizedBox(
+                          widthFactor: .84,
+                          child: _previewPlayer(false),
                         ),
                       ),
-                      const SizedBox(width: 15),
-                      Text(
-                        '✦',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Theme.of(context).colorScheme.secondary,
+                      const SizedBox(height: 15),
+                      ExcludeSemantics(
+                        child: IgnorePointer(
+                          child: DamaBoard(
+                            game: newGame('decorative'),
+                            canPlay: false,
+                            onMove: (_) {},
+                            boardStyle: widget.preferences.boardStyle,
+                            showCoordinates: true,
+                            showLegalMoves: false,
+                            reduceMotion: true,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Align(
+                        alignment: AlignmentDirectional.centerEnd,
+                        child: FractionallySizedBox(
+                          widthFactor: .84,
+                          child: _previewPlayer(true),
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(
-                      'CLASSIC 8 × 8',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontFamily: 'Manrope',
-                        fontSize: 8,
-                        letterSpacing: 2,
-                        color: muted,
+                const SizedBox(height: 23),
+                Transform.rotate(
+                  angle: .045,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 11,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.secondary.withValues(alpha: .13),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.secondary.withValues(alpha: .17),
                       ),
                     ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.local_cafe_outlined,
+                          size: 19,
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                        const SizedBox(width: 9),
+                        Text(
+                          'بێ پەلە،\nبە چێژەوە.',
+                          style: TextStyle(
+                            fontSize: 9,
+                            color: Theme.of(context).colorScheme.secondary,
+                            height: 1.8,
+                          ),
+                        ),
+                        const SizedBox(width: 15),
+                        Text(
+                          '✦',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () =>
-                          showSettings(context, widget.preferences, c),
+                ),
+                const SizedBox(height: 24),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
                       child: Text(
-                        'تەختەکەت هەڵبژێرە ‹',
-                        style: TextStyle(fontSize: 9, color: muted),
+                        'CLASSIC 8 × 8',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontFamily: 'Manrope',
+                          fontSize: 8,
+                          letterSpacing: 2,
+                          color: muted,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    Expanded(
+                      child: TextButton(
+                        onPressed: () =>
+                            showSettings(context, widget.preferences, c),
+                        child: Text(
+                          'تەختەکەت هەڵبژێرە ‹',
+                          style: TextStyle(fontSize: 9, color: muted),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

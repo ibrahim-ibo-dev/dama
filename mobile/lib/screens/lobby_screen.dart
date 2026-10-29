@@ -637,7 +637,14 @@ class _LobbyScreenState extends State<LobbyScreen> {
                 textAlign: wide ? TextAlign.start : TextAlign.center,
                 style: TextStyle(
                   fontSize: wide
-                      ? 43
+                      ? (MediaQuery.sizeOf(context).width <= 920
+                            ? 35.0
+                            : MediaQuery.sizeOf(context).width <= 1150
+                            ? 40.0
+                            : (MediaQuery.sizeOf(context).width * .038).clamp(
+                                35.0,
+                                52.0,
+                              ))
                       : MediaQuery.sizeOf(context).width < 400
                       ? 34
                       : 39,
@@ -651,7 +658,14 @@ class _LobbyScreenState extends State<LobbyScreen> {
                 textAlign: wide ? TextAlign.start : TextAlign.center,
                 style: TextStyle(
                   fontSize: wide
-                      ? 43
+                      ? (MediaQuery.sizeOf(context).width <= 920
+                            ? 35.0
+                            : MediaQuery.sizeOf(context).width <= 1150
+                            ? 40.0
+                            : (MediaQuery.sizeOf(context).width * .038).clamp(
+                                35.0,
+                                52.0,
+                              ))
                       : MediaQuery.sizeOf(context).width < 400
                       ? 34
                       : 39,
@@ -685,7 +699,10 @@ class _LobbyScreenState extends State<LobbyScreen> {
         style: TextStyle(fontSize: 11, color: muted, height: 2.3),
       ),
       const SizedBox(height: 25),
-      _entryCard(),
+      ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 435),
+        child: _entryCard(),
+      ),
       const SizedBox(height: 16),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

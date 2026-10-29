@@ -116,7 +116,7 @@ class _DamaAppState extends State<DamaApp> {
           child: Row(
             children: [
               const Expanded(child: WebBrand()),
-              if (wide) ...[
+              if (MediaQuery.sizeOf(context).width > 920) ...[
                 Text(
                   '✳',
                   style: TextStyle(

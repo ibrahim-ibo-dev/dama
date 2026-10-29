@@ -10,6 +10,8 @@ Repository: [ibrahim-ibo-dev/dama](https://github.com/ibrahim-ibo-dev/dama)
 
 بۆ دامەزراندن، دروستکردنی APK و ڕێکخستنی iOS، [ڕێنمایی مۆبایل](mobile/README.md) بخوێنەوە. سەرەکیی پڕۆژە بۆ هۆستکردنی وێبەکە لە Vercel بەکار دێت؛ Flutter سێرڤەری جیاوازی پێویست نییە.
 
+[ڕووکاری ئەپی مۆبایل](artifacts/dama-flutter-mobile.png) · [تەختە بە پڕشاشە](artifacts/dama-flutter-focus.png) · [گزارشی پشکنین و build](artifacts/mobile-verification.md)
+
 ![پێشبینینی دامە](artifacts/dama-preview.png)
 
 ## تایبەتمەندییە نوێیەکان

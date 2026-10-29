@@ -1,0 +1,17 @@
+{
+  "source_commit": "75b35802340a007163500be7aeb73c4fcaec20a6",
+  "file": "dama-android.apk",
+  "bytes": 52869861,
+  "sha256": "687F418A76A60EE711E82D282527E870CA5CF15C98CEBD103959868B20766766",
+  "default_server": "https://dama.ibrahim-eng.dev",
+  "flutter": "3.38.0",
+  "version": "1.0.0+1",
+  "minimum_android_api": 24,
+  "target_android_api": 36,
+  "abis": [
+    "arm64-v8a",
+    "armeabi-v7a",
+    "x86_64"
+  ],
+  "signing": "Android Debug key, private testing"
+}
